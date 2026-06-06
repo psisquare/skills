@@ -12,7 +12,11 @@ The CLI shows a picker — choose which skills and which agents to install to.
 
 ## Skills
 
-### [visual-brief](skills/visual-brief/SKILL.md)
+### pm
+
+Product/PM workflow skills.
+
+#### [visual-brief](skills/pm/visual-brief/SKILL.md)
 
 Turn any implementation concept (PRD, plan, architecture, postmortem) into a **story-scroll HTML one-pager** humans actually understand — hero "aha" moment first, plain-language beats, technical appendix below the fold. Single self-contained `.html` file, zero external deps, opens in any browser.
 
@@ -25,8 +29,12 @@ See it applied to itself: [examples/visual-brief-demo.html](examples/visual-brie
 ## Layout
 
 ```
-skills/<name>/SKILL.md    # skill definition + bundled references/ and assets/
-examples/                 # sample outputs (not installed)
+skills/<bucket>/<name>/SKILL.md   # skill definition + bundled references/ and assets/
+examples/                         # sample outputs (not installed)
 ```
+
+Buckets:
+
+- `pm/` — product/PM workflow skills
 
 Spec: [agentskills.io](https://agentskills.io)
