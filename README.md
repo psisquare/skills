@@ -24,7 +24,6 @@ Core principle: **distillation is the work; HTML is the easy part.** The skill e
 
 See it applied to itself: [examples/visual-brief-demo.html](examples/visual-brief-demo.html)
 
-![visual-brief demo](examples/visual-brief-demo.png)
 
 ## Layout
 
