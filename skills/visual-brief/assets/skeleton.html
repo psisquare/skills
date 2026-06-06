@@ -1,0 +1,229 @@
+<!doctype html>
+<!-- visual-brief skeleton — locked design system.
+     Replace <BEAT> placeholders; delete unused idiom CSS only if file size matters (it doesn't).
+     Self-contained: open in any browser, no build step. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TITLE — Visual Brief</title>
+<style>
+  /* ===== design tokens (locked) — system font stacks, zero external deps ===== */
+  :root {
+    --bg: #faf6f1; --card: #fff; --ink: #1c1917; --muted: #57534e; --subtle: #a8a29e;
+    --line: #e7e2dc; --accent: #e8552f; --accent-soft: #fdeae3;
+    --green: #1a9d50; --green-soft: #e3f4ea; --amber: #b45309; --amber-soft: #fdf2e3;
+    --red: #d23f3f; --red-soft: #fde8e8; --dark: #1c1917; --gold: #f5b945;
+    --mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --display: ui-serif, Georgia, "Times New Roman", Times, serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--ink); font-size: 17px; line-height: 1.7; }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+
+  /* ===== story structure ===== */
+  section { padding: 72px 0; border-bottom: 1px solid var(--line); }
+  .beat { font-family: var(--mono); font-size: 12px; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  h1 { font-family: var(--display); font-weight: 700; font-size: clamp(30px, 5.5vw, 46px); line-height: 1.25; }
+  h2 { font-family: var(--display); font-weight: 600; font-size: clamp(24px, 4vw, 32px); line-height: 1.35; margin-bottom: 18px; }
+  .lead, .hero .sub { margin-top: 16px; font-size: 19px; color: var(--muted); }
+  p + p { margin-top: 14px; }
+  b { font-weight: 600; }
+  .hl { color: var(--accent); }
+  a { color: var(--accent); }
+  .hero { padding: 88px 0 72px; }
+
+  /* ===== idiom 1: waterfall ===== */
+  .wf { margin-top: 40px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 28px; }
+  .wf-title { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--subtle); margin-bottom: 18px; }
+  .wf-row { display: grid; grid-template-columns: 150px 1fr 86px; align-items: center; gap: 14px; padding: 7px 0; }
+  .wf-row .lbl { font-size: 14.5px; }
+  .wf-row .amt { font-family: var(--mono); font-weight: 600; font-size: 15px; text-align: right; }
+  .bar { height: 26px; border-radius: 7px; }
+  .bar.full { background: var(--dark); } .bar.fee { background: var(--red); opacity: .85; }
+  .bar.cost { background: var(--subtle); } .bar.win { background: var(--green); } .bar.lose { background: var(--red); }
+  .amt.neg { color: var(--red); } .amt.pos { color: var(--green); }
+  .wf-sum { border-top: 2px solid var(--ink); margin-top: 10px; padding-top: 12px; }
+  .wf-sum .lbl { font-weight: 700; font-size: 16px; } .wf-sum .amt { font-size: 20px; }
+  .wf-note { margin-top: 16px; font-size: 14px; color: var(--muted); }
+  .flip { margin-top: 18px; background: var(--dark); color: #fff; border-radius: 18px; padding: 28px; }
+  .flip .wf-title { color: var(--gold); } .flip .wf-row .lbl { color: #d6d3d1; }
+  .flip .bar.full { background: #44403c; } .flip .bar.cost { background: #78716c; }
+  .flip .wf-sum { border-top-color: #fff; }
+  .flip .punch { margin-top: 18px; font-family: var(--display); font-size: 21px; color: var(--gold); }
+
+  /* ===== idiom 2: contrast cards ===== */
+  .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .rule { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--red); border-radius: 10px; padding: 12px 14px; font-size: 13px; }
+  .rule b { display: block; margin-bottom: 2px; font-size: 13.5px; }
+  .rule .no { color: var(--red); font-family: var(--mono); font-size: 10.5px; font-weight: 600; }
+  .rule .yes { color: var(--green); font-family: var(--mono); font-size: 10.5px; font-weight: 600; }
+
+  /* ===== idiom 3: numbered timeline ===== */
+  .journey { margin-top: 30px; display: flex; flex-direction: column; }
+  .jstep { display: grid; grid-template-columns: 52px 1fr; gap: 18px; }
+  .jstep .dot { width: 36px; height: 36px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-family: var(--mono); font-weight: 600; display: flex; align-items: center; justify-content: center; font-size: 14px; position: relative; z-index: 1; }
+  .jstep .dot.gold { background: var(--dark); color: var(--gold); }
+  .jstep .jcol { position: relative; }
+  .jstep:not(:last-child) .jcol::after { content: ""; position: absolute; left: 17px; top: 38px; bottom: 0; width: 2px; background: var(--line); }
+  .jstep .jline { padding-bottom: 34px; }
+  .jstep b { font-size: 17px; }
+  .jstep span { display: block; color: var(--muted); font-size: 15px; margin-top: 2px; }
+
+  /* ===== idiom 4: progress + slices ===== */
+  .progress { margin: 26px 0 8px; }
+  .pbar { height: 14px; border-radius: 999px; background: var(--line); overflow: hidden; }
+  .pbar i { display: block; height: 100%; background: var(--green); border-radius: 999px; }
+  .pbar-lbl { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 12.5px; color: var(--muted); margin-top: 8px; }
+  .slices { margin-top: 22px; display: flex; flex-direction: column; gap: 8px; }
+  .slice { display: grid; grid-template-columns: 30px 1fr auto; gap: 14px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 13px 18px; text-decoration: none; color: inherit; }
+  .slice:hover { border-color: var(--accent); }
+  .slice .ck { font-size: 17px; }
+  .slice b { font-size: 15.5px; }
+  .slice .desc { display: block; color: var(--muted); font-size: 13.5px; }
+  .chip { font-family: var(--mono); font-size: 11px; font-weight: 600; border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
+  .chip.done { background: var(--green-soft); color: var(--green); }
+  .chip.wait { background: var(--amber-soft); color: var(--amber); }
+
+  /* ===== idiom 5: arrow funnel ===== */
+  .funnel { display: flex; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; overflow-x: auto; }
+  .fstep { flex: 1; min-width: 122px; text-align: center; padding: 4px 8px; position: relative; }
+  .fstep:not(:last-child)::after { content: "→"; position: absolute; right: -7px; top: 20px; color: var(--accent); font-weight: 700; }
+  .fstep .fe { font-family: var(--mono); font-size: 10.5px; font-weight: 600; background: var(--bg); border: 1px solid var(--line); border-radius: 7px; padding: 5px 7px; display: inline-block; }
+  .fstep .fd { font-size: 11.5px; color: var(--muted); margin-top: 6px; }
+  .fstep.gold .fe { background: var(--dark); color: var(--gold); border-color: var(--dark); }
+
+  /* ===== idiom 6: node-arrow diagram ===== */
+  .arch { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; overflow-x: auto; }
+  .arch-row { display: flex; align-items: center; min-width: 620px; }
+  .node { flex: 1; border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--bg); text-align: center; }
+  .node .nt { font-weight: 700; font-size: 13px; }
+  .node .ns { font-family: var(--mono); font-size: 10px; color: var(--subtle); margin-top: 3px; word-break: break-all; }
+  .node.hot { border-color: var(--accent); background: var(--accent-soft); }
+  .node.dark { background: var(--dark); border-color: var(--dark); color: #fff; }
+  .node.dark .ns { color: #a8a29e; }
+  .arrow { flex: 0 0 30px; text-align: center; color: var(--accent); font-weight: 700; }
+  .arch-sub { display: flex; gap: 12px; margin-top: 12px; min-width: 620px; }
+  .arch-note { font-size: 12.5px; color: var(--muted); margin-top: 12px; display: flex; flex-direction: column; gap: 4px; }
+
+  /* ===== idiom 7: boundary panels + gates ===== */
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .panel { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+  .panel h4 { font-size: 12px; font-family: var(--mono); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 10px; color: var(--subtle); }
+  .panel ul { list-style: none; }
+  .panel li { padding: 5px 0; border-bottom: 1px dashed var(--line); font-size: 13px; display: flex; gap: 8px; }
+  .panel li:last-child { border-bottom: 0; }
+  .panel li::before { content: "✕"; color: var(--subtle); font-weight: 700; flex: 0 0 auto; }
+  .panel.risk li::before { content: "⚠"; color: var(--amber); }
+  .panel.gate li::before { content: "□"; color: var(--accent); }
+  .left-list { margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
+  .gate { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--amber); border-radius: 12px; padding: 16px 20px; }
+  .gate b { display: block; margin-bottom: 2px; }
+  .gate span { color: var(--muted); font-size: 15px; }
+  .gate.risk { border-left-color: var(--red); }
+
+  /* ===== idiom 8: tabs ===== */
+  .tabs { margin-top: 20px; }
+  .tab-bar { display: flex; gap: 6px; border-bottom: 2px solid var(--line); }
+  .tab { font-family: var(--mono); font-size: 12.5px; font-weight: 600; background: none; border: 0; color: var(--muted); padding: 9px 14px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-panel { display: none; padding: 18px 2px; }
+  .tab-panel.active { display: block; }
+  .no-js .tab-panel { display: block; border-bottom: 1px dashed var(--line); }
+
+  /* ===== idiom 9: disclosure ===== */
+  details.more { margin-top: 16px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  details.more summary { cursor: pointer; padding: 13px 18px; font-weight: 600; font-size: 14.5px; color: var(--accent); }
+  details.more .more-body { padding: 0 18px 16px; font-size: 14px; color: var(--muted); }
+
+  /* ===== idiom 10: stat strip ===== */
+  .nums { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .num { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; text-align: center; }
+  .num .v { font-family: var(--mono); font-weight: 600; font-size: 22px; }
+  .num .l { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+  /* ===== other / appendix ===== */
+  .reasons { display: flex; flex-direction: column; gap: 12px; margin-top: 26px; }
+  .reason { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; display: flex; gap: 16px; align-items: flex-start; }
+  .reason .ic { font-size: 22px; flex: 0 0 auto; }
+  .reason b { display: block; margin-bottom: 2px; }
+  .reason span { color: var(--muted); font-size: 15px; }
+  .appx-cut { background: var(--dark); color: #fff; border-bottom: 0; }
+  .appx-cut .beat { color: var(--gold); }
+  .appx-cut h2 { color: #fff; }
+  .appx-cut p { color: #d6d3d1; }
+  .appendix { padding-top: 40px; font-size: 15px; }
+  .appendix h3 { font-family: var(--display); font-size: 19px; margin: 36px 0 12px; }
+  .appendix h3 .n { font-family: var(--mono); font-size: 11px; color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: 2px 9px; margin-right: 8px; vertical-align: 2px; }
+  .foot { padding: 32px 0 60px; font-family: var(--mono); font-size: 11.5px; color: var(--subtle); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  @media (max-width: 700px) {
+    section { padding: 52px 0; }
+    .hero { padding: 60px 0 52px; }
+    .wf-row { grid-template-columns: 104px 1fr 76px; gap: 10px; }
+    .rules, .cols { grid-template-columns: 1fr; }
+    .nums { grid-template-columns: 1fr 1fr; }
+    .slice { grid-template-columns: 26px 1fr; }
+    .slice .chip { grid-column: 2; justify-self: start; }
+  }
+</style>
+</head>
+<body class="no-js">
+<script>document.body.classList.remove("no-js");</script>
+
+<!-- BEAT 0 · HERO — the aha. Waterfall, contrast, or journey. Never architecture. -->
+<section class="hero">
+  <div class="wrap">
+    <div class="beat">PROJECT · brief · TICKET-REF</div>
+    <h1>HOOK QUESTION OR CLAIM <span class="hl">with the tension highlighted?</span></h1>
+    <p class="sub">One line that says why this page exists</p>
+    <!-- hero idiom here -->
+  </div>
+</section>
+
+<!-- BEAT 1..N · one idea per section: problem → solution → status → what's left -->
+<section>
+  <div class="wrap">
+    <div class="beat">01 · LABEL</div>
+    <h2>Section claim as a sentence</h2>
+    <p>Plain-language body.</p>
+    <!-- one idiom here -->
+  </div>
+</section>
+
+<!-- APPENDIX CUT — explicit divider; stakeholders stop here -->
+<section class="appx-cut">
+  <div class="wrap">
+    <div class="beat">Appendix · for devs</div>
+    <h2>End of story — technical detail below</h2>
+    <p>Stakeholders can stop here. Below is the code map for whoever builds/maintains this.</p>
+  </div>
+</section>
+
+<!-- TECHNICAL APPENDIX — architecture, rules, events, scope. Density OK here. -->
+<div class="appendix">
+  <div class="wrap">
+    <h3><span class="n">A1</span>Heading</h3>
+    <!-- packed idioms -->
+    <div class="foot">
+      <span>sources: <a href="#">TICKET</a> · ADRs · specs</span>
+      <span>brief generated DATE · status as of REF</span>
+    </div>
+  </div>
+</div>
+
+<script>
+/* tabs — event delegation, multiple .tabs blocks supported */
+document.addEventListener("click", (e) => {
+  const tab = e.target.closest(".tab");
+  if (!tab) return;
+  const root = tab.closest("[data-tabs]");
+  const key = tab.getAttribute("data-tab");
+  root.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t === tab));
+  root.querySelectorAll(".tab-panel").forEach(p => p.classList.toggle("active", p.getAttribute("data-panel") === key));
+});
+</script>
+</body>
+</html>

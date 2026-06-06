@@ -1,0 +1,305 @@
+<!doctype html>
+<!-- DEMO output of the visual-brief skill — the subject is the skill itself.
+     Built from assets/skeleton.html. All claims sourced from the kamrai dev-brief case (2026-06-07). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>visual-brief — Visual Brief</title>
+<style>
+  :root {
+    --bg: #faf6f1; --card: #fff; --ink: #1c1917; --muted: #57534e; --subtle: #a8a29e;
+    --line: #e7e2dc; --accent: #e8552f; --accent-soft: #fdeae3;
+    --green: #1a9d50; --green-soft: #e3f4ea; --amber: #b45309; --amber-soft: #fdf2e3;
+    --red: #d23f3f; --red-soft: #fde8e8; --dark: #1c1917; --gold: #f5b945;
+    --mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --display: ui-serif, Georgia, "Times New Roman", Times, serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--ink); font-size: 17px; line-height: 1.7; }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 72px 0; border-bottom: 1px solid var(--line); }
+  .beat { font-family: var(--mono); font-size: 12px; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  h1 { font-family: var(--display); font-weight: 700; font-size: clamp(30px, 5.5vw, 46px); line-height: 1.25; }
+  h2 { font-family: var(--display); font-weight: 600; font-size: clamp(24px, 4vw, 32px); line-height: 1.35; margin-bottom: 18px; }
+  .hero .sub { margin-top: 16px; font-size: 19px; color: var(--muted); }
+  p + p { margin-top: 14px; }
+  b { font-weight: 600; }
+  .hl { color: var(--accent); }
+  a { color: var(--accent); }
+  .hero { padding: 88px 0 72px; }
+
+  /* before/after hero cards */
+  .ba { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 36px; }
+  .ba .cell { border-radius: 16px; padding: 22px; border: 1px solid var(--line); background: var(--card); }
+  .ba .cell.bad { border-left: 4px solid var(--red); }
+  .ba .cell.good { border-left: 4px solid var(--green); }
+  .ba .t { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; }
+  .ba .bad .t { color: var(--red); } .ba .good .t { color: var(--green); }
+  .ba .mock { border: 1px dashed var(--line); border-radius: 8px; padding: 10px; margin-bottom: 12px; }
+  .ba .mock i { display: block; height: 5px; border-radius: 3px; background: var(--line); margin: 4px 0; }
+  .ba .bad .mock i { width: 100% !important; }
+  .ba .good .mock i.hero-bar { height: 22px; background: var(--accent-soft); width: 100%; }
+  .ba .good .mock i:nth-child(2) { width: 70%; }
+  .ba .good .mock i:nth-child(3) { width: 45%; }
+  .ba .cell p { font-size: 14px; color: var(--muted); }
+
+  .reasons { display: flex; flex-direction: column; gap: 12px; margin-top: 26px; }
+  .reason { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; display: flex; gap: 16px; align-items: flex-start; }
+  .reason .ic { font-size: 22px; flex: 0 0 auto; }
+  .reason b { display: block; margin-bottom: 2px; }
+  .reason span { color: var(--muted); font-size: 15px; }
+
+  .journey { margin-top: 30px; display: flex; flex-direction: column; }
+  .jstep { display: grid; grid-template-columns: 52px 1fr; gap: 18px; }
+  .jstep .dot { width: 36px; height: 36px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-family: var(--mono); font-weight: 600; display: flex; align-items: center; justify-content: center; font-size: 14px; position: relative; z-index: 1; }
+  .jstep .dot.gold { background: var(--dark); color: var(--gold); }
+  .jstep .jcol { position: relative; }
+  .jstep:not(:last-child) .jcol::after { content: ""; position: absolute; left: 17px; top: 38px; bottom: 0; width: 2px; background: var(--line); }
+  .jstep .jline { padding-bottom: 34px; }
+  .jstep b { font-size: 17px; }
+  .jstep span { display: block; color: var(--muted); font-size: 15px; margin-top: 2px; }
+
+  /* tabs */
+  .tabs { margin-top: 20px; }
+  .tab-bar { display: flex; gap: 6px; border-bottom: 2px solid var(--line); flex-wrap: wrap; }
+  .tab { font-family: var(--mono); font-size: 12.5px; font-weight: 600; background: none; border: 0; color: var(--muted); padding: 9px 14px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-panel { display: none; padding: 18px 2px; }
+  .tab-panel.active { display: block; }
+  .no-js .tab-panel { display: block; border-bottom: 1px dashed var(--line); }
+  .tab-panel .use { font-size: 13.5px; color: var(--muted); margin-bottom: 14px; }
+
+  /* mini idiom samples inside tabs */
+  .wf { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  .wf-row { display: grid; grid-template-columns: 120px 1fr 76px; align-items: center; gap: 12px; padding: 5px 0; }
+  .wf-row .lbl { font-size: 13.5px; }
+  .wf-row .amt { font-family: var(--mono); font-weight: 600; font-size: 13.5px; text-align: right; }
+  .bar { height: 20px; border-radius: 6px; }
+  .bar.full { background: var(--dark); } .bar.fee { background: var(--red); opacity: .85; }
+  .bar.cost { background: var(--subtle); } .bar.win { background: var(--green); }
+  .amt.neg { color: var(--red); } .amt.pos { color: var(--green); }
+  .wf-sum { border-top: 2px solid var(--ink); margin-top: 8px; padding-top: 9px; }
+  .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .rule { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--red); border-radius: 10px; padding: 12px 14px; font-size: 13px; }
+  .rule b { display: block; margin-bottom: 2px; font-size: 13.5px; }
+  .rule .no { color: var(--red); font-family: var(--mono); font-size: 10.5px; font-weight: 600; }
+  .rule .yes { color: var(--green); font-family: var(--mono); font-size: 10.5px; font-weight: 600; }
+
+  .funnel { display: flex; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; overflow-x: auto; }
+  .fstep { flex: 1; min-width: 110px; text-align: center; padding: 4px 8px; position: relative; }
+  .fstep:not(:last-child)::after { content: "→"; position: absolute; right: -7px; top: 20px; color: var(--accent); font-weight: 700; }
+  .fstep .fe { font-family: var(--mono); font-size: 10.5px; font-weight: 600; background: var(--bg); border: 1px solid var(--line); border-radius: 7px; padding: 5px 7px; display: inline-block; }
+  .fstep .fd { font-size: 11.5px; color: var(--muted); margin-top: 6px; }
+  .fstep.gold .fe { background: var(--dark); color: var(--gold); border-color: var(--dark); }
+
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .panel { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+  .panel h4 { font-size: 12px; font-family: var(--mono); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 10px; color: var(--subtle); }
+  .panel ul { list-style: none; }
+  .panel li { padding: 5px 0; border-bottom: 1px dashed var(--line); font-size: 13px; display: flex; gap: 8px; }
+  .panel li:last-child { border-bottom: 0; }
+  .panel li::before { content: "✕"; color: var(--subtle); font-weight: 700; flex: 0 0 auto; }
+  .panel.risk li::before { content: "⚠"; color: var(--amber); }
+
+  .appx-cut { background: var(--dark); color: #fff; border-bottom: 0; }
+  .appx-cut .beat { color: var(--gold); }
+  .appx-cut h2 { color: #fff; }
+  .appx-cut p { color: #d6d3d1; }
+  .appendix { padding-top: 40px; font-size: 15px; }
+  .appendix h3 { font-family: var(--display); font-size: 19px; margin: 36px 0 12px; }
+  .appendix h3 .n { font-family: var(--mono); font-size: 11px; color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: 2px 9px; margin-right: 8px; vertical-align: 2px; }
+  .tree { font-family: var(--mono); font-size: 12.5px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px 22px; white-space: pre; overflow-x: auto; line-height: 1.8; }
+  .foot { padding: 32px 0 60px; font-family: var(--mono); font-size: 11.5px; color: var(--subtle); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  @media (max-width: 700px) {
+    section { padding: 52px 0; }
+    .hero { padding: 60px 0 52px; }
+    .ba, .rules, .cols { grid-template-columns: 1fr; }
+    .wf-row { grid-template-columns: 96px 1fr 70px; gap: 10px; }
+  }
+</style>
+</head>
+<body class="no-js">
+<script>document.body.classList.remove("no-js");</script>
+
+<!-- BEAT 0 · HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="beat">visual-brief · skill demo · meta edition</div>
+    <h1>Your spec is complete.<br>So why does <span class="hl">nobody get it?</span></h1>
+    <p class="sub">This page explains the <b>visual-brief</b> skill — and is itself an output of it</p>
+
+    <div class="ba">
+      <div class="cell bad">
+        <div class="t">✕ What we hand off today</div>
+        <div class="mock"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <p>Reference card: every fact, equal weight, jargon chips. Technically complete. Humanly unreadable — the kamrai brief v1 got the verdict <i>"difficult to understand, difficult to communicate with human."</i></p>
+      </div>
+      <div class="cell good">
+        <div class="t">✓ What this skill produces</div>
+        <div class="mock"><i class="hero-bar"></i><i></i><i></i></div>
+        <p>Story scroll: one visceral hook (a sale that flips from +$107 to −$22), ≤6 plain-language beats, technical detail demoted below an explicit divider. Same facts, ruthless hierarchy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEAT 1 · why dense docs fail -->
+<section>
+  <div class="wrap">
+    <div class="beat">01 · The problem</div>
+    <h2>Specs optimize for completeness, readers need hierarchy</h2>
+    <div class="reasons">
+      <div class="reason"><span class="ic">⚖️</span><div><b>Every fact gets equal weight</b><span>A reader can't tell the one number that matters from the forty that don't. Completeness without hierarchy is noise.</span></div></div>
+      <div class="reason"><span class="ic">🏗️</span><div><b>Docs lead with architecture</b><span>Boxes and arrows before the reader feels the problem. Nobody cares how it works until they care that it exists.</span></div></div>
+      <div class="reason"><span class="ic">🗣️</span><div><b>One artifact, two audiences</b><span>Devs want file paths and event names; stakeholders want the story. A doc tuned for either loses the other.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BEAT 2 · how the skill works -->
+<section>
+  <div class="wrap">
+    <div class="beat">02 · The workflow</div>
+    <h2>Distillation is the work — HTML is the easy part</h2>
+    <div class="journey">
+      <div class="jstep"><div class="jcol"><div class="dot">1</div></div><div class="jline"><b>Pin the audience</b><span>devs / mixed / non-technical — sets the jargon budget and the appendix split</span></div></div>
+      <div class="jstep"><div class="jcol"><div class="dot">2</div></div><div class="jline"><b>Find the one "aha"</b><span>the moment a reader feels the problem — best as real numbers with a contrast flip, never an architecture diagram</span></div></div>
+      <div class="jstep"><div class="jcol"><div class="dot">3</div></div><div class="jline"><b>Mine real data from the source</b><span>numbers come from the repo, ticket, or spec — verified arithmetic, never invented demos</span></div></div>
+      <div class="jstep"><div class="jcol"><div class="dot">4</div></div><div class="jline"><b>Map ≤6 beats to visual idioms</b><span>one idea per section, one idiom per beat, everything else demoted to the appendix</span></div></div>
+      <div class="jstep"><div class="jcol"><div class="dot gold">5</div></div><div class="jline"><b>Render, screenshot, deliver</b><span>build from the skeleton, verify with headless Chrome, ship file + preview PNG with source-of-truth links</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BEAT 3 · idiom library w/ live tabs -->
+<section>
+  <div class="wrap">
+    <div class="beat">03 · The idiom library</div>
+    <h2>Ten visual patterns, each mapped to a concept type</h2>
+    <p>Pick the idiom that matches the shape of the idea — these tabs are themselves idiom #8.</p>
+    <div class="tabs" data-tabs>
+      <div class="tab-bar">
+        <button class="tab active" data-tab="wf">Waterfall</button>
+        <button class="tab" data-tab="cc">Contrast cards</button>
+        <button class="tab" data-tab="fn">Funnel</button>
+      </div>
+      <div class="tab-panel active" data-panel="wf">
+        <div class="use"><b>Quantity/money flow</b> — one amount eaten by deductions. Strongest hook when a good case is followed by a dark bad-case flip. (Live data from the kamrai case.)</div>
+        <div class="wf">
+          <div class="wf-row"><span class="lbl">Sale price</span><div class="bar full" style="width:100%"></div><span class="amt">฿390</span></div>
+          <div class="wf-row"><span class="lbl">Platform fees</span><div class="bar fee" style="width:17.4%"></div><span class="amt neg">−฿68</span></div>
+          <div class="wf-row"><span class="lbl">Item cost</span><div class="bar cost" style="width:55.1%"></div><span class="amt neg">−฿215</span></div>
+          <div class="wf-row wf-sum"><span class="lbl"><b>True profit</b></span><div class="bar win" style="width:27.4%"></div><span class="amt pos">+฿107</span></div>
+        </div>
+      </div>
+      <div class="tab-panel" data-panel="cc">
+        <div class="use"><b>Wrong vs right</b> — correction rules, myth-busting, migration before/after. One rule per card, two lines per side.</div>
+        <div class="rules">
+          <div class="rule"><b>PRIME is a discount, never a fee</b><span class="no">✕ prototype charged 6–8% for it</span><br><span class="yes">✓ only optional charge is Xtra 8.56%</span></div>
+          <div class="rule"><b>No "escrow" charge exists</b><span class="no">✕ prototype: 3% escrow per order</span><br><span class="yes">✓ opt-in ad prepay, not a platform fee</span></div>
+        </div>
+      </div>
+      <div class="tab-panel" data-panel="fn">
+        <div class="use"><b>Pipeline / event chain</b> — request lifecycles, analytics funnels. Terminal step gets gold.</div>
+        <div class="funnel">
+          <div class="fstep"><span class="fe">$pageview</span><div class="fd">consent-gated</div></div>
+          <div class="fstep"><span class="fe">calc_submit</span><div class="fd">profit_sign</div></div>
+          <div class="fstep"><span class="fe">cta_click</span><div class="fd">cta id + plan</div></div>
+          <div class="fstep gold"><span class="fe">sign_up</span><div class="fd">ref=kamrai</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEAT 4 · the rules -->
+<section>
+  <div class="wrap">
+    <div class="beat">04 · The guardrails</div>
+    <h2>Six anti-patterns — each one observed in a real failed brief</h2>
+    <div class="rules">
+      <div class="rule"><b>Reference-card density</b><span class="no">✕ every fact at equal weight</span><br><span class="yes">✓ cut, or demote to appendix</span></div>
+      <div class="rule"><b>Leading with architecture</b><span class="no">✕ boxes and arrows as the opener</span><br><span class="yes">✓ reader feels the problem first</span></div>
+      <div class="rule"><b>Jargon in the story half</b><span class="no">✕ HITL, DEV DONE, event names up top</span><br><span class="yes">✓ plain words top, jargon appendix</span></div>
+      <div class="rule"><b>Invented numbers</b><span class="no">✕ plausible-looking demo data</span><br><span class="yes">✓ mined from source, arithmetic checked</span></div>
+      <div class="rule"><b>Mono-font body text</b><span class="no">✕ whole sections in monospace</span><br><span class="yes">✓ mono for labels, code, data only</span></div>
+      <div class="rule"><b>More than ~6 beats</b><span class="no">✕ a wiki page pretending to scroll</span><br><span class="yes">✓ one aha, few beats, hard appendix cut</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- APPENDIX CUT -->
+<section class="appx-cut">
+  <div class="wrap">
+    <div class="beat">Appendix · for whoever maintains the skill</div>
+    <h2>End of story — skill internals below</h2>
+    <p>If you just wanted to know what visual-brief does, you're done. Below is the file map and pipeline.</p>
+  </div>
+</section>
+
+<!-- TECHNICAL APPENDIX -->
+<div class="appendix">
+  <div class="wrap">
+
+    <h3><span class="n">A1</span>File map</h3>
+    <div class="tree">~/.claude/skills/visual-brief/
+├── SKILL.md               # workflow, idiom table, anti-patterns (&lt;100 lines)
+├── references/
+│   └── idioms.md          # 10 idioms — when-to-use + copy-paste HTML/CSS
+└── assets/
+    └── skeleton.html      # locked design tokens, all idiom styles, tab JS, beat scaffolding</div>
+
+    <h3><span class="n">A2</span>Production pipeline</h3>
+    <div class="funnel">
+      <div class="fstep"><span class="fe">source</span><div class="fd">PRD / plan / ADR / repo</div></div>
+      <div class="fstep"><span class="fe">distill</span><div class="fd">audience → aha → ≤6 beats</div></div>
+      <div class="fstep"><span class="fe">skeleton.html</span><div class="fd">fill beats with idioms</div></div>
+      <div class="fstep"><span class="fe">headless chrome</span><div class="fd">screenshot, eyeball, fix</div></div>
+      <div class="fstep gold"><span class="fe">deliver</span><div class="fd">docs/&lt;topic&gt;/brief.html + PNG</div></div>
+    </div>
+
+    <h3><span class="n">A3</span>Design decisions (locked)</h3>
+    <div class="cols">
+      <div class="panel">
+        <h4>What this skill is not</h4>
+        <ul>
+          <li>Not a slide deck generator — single scrolling page only</li>
+          <li>Not a source of truth — footer always links the ticket/ADR</li>
+          <li>Not themeable — locked palette makes briefs recognizable</li>
+          <li>Not a build artifact — no bundler, Google Fonts only external dep</li>
+        </ul>
+      </div>
+      <div class="panel risk">
+        <h4>Constraints</h4>
+        <ul>
+          <li>Tabs/toggles allowed, but page must read stacked if JS stripped (no-js fallback)</li>
+          <li>English default; chain language skills (e.g. kien-thai) when content language differs</li>
+          <li>Dark emphasis cards: max 2 per page or they stop landing</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot">
+      <span>source: ~/.claude/skills/visual-brief · case study: docs/kamrai/dev-brief.html (20f0a17)</span>
+      <span>demo generated 2026-06-07 · this page is skill output, applied to itself</span>
+    </div>
+
+  </div>
+</div>
+
+<script>
+document.addEventListener("click", (e) => {
+  const tab = e.target.closest(".tab");
+  if (!tab) return;
+  const root = tab.closest("[data-tabs]");
+  const key = tab.getAttribute("data-tab");
+  root.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t === tab));
+  root.querySelectorAll(".tab-panel").forEach(p => p.classList.toggle("active", p.getAttribute("data-panel") === key));
+});
+</script>
+</body>
+</html>
