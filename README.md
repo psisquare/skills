@@ -10,6 +10,14 @@ npx skills@latest add psisquare/skills
 
 The CLI shows a picker — choose which skills and which agents to install to.
 
+## Update
+
+```bash
+npx skills@latest update -y
+```
+
+Pulls the latest version of every installed skill — no reinstall needed.
+
 ## Skills
 
 ### pm
