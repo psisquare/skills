@@ -22,7 +22,7 @@ Turn any implementation concept (PRD, plan, architecture, postmortem) into a **s
 
 Core principle: **distillation is the work; HTML is the easy part.** The skill encodes a workflow (audience → aha → mine real data → ≤6 beats → render-verify) plus a library of 11 visual idioms (waterfall bars, contrast cards, timelines, funnels, tabs, screenshot frames…) and the anti-patterns that make dense handoff docs fail.
 
-See it applied to itself: [examples/visual-brief-demo.html](examples/visual-brief-demo.html)
+See it applied to itself: [examples/visual-brief-demo.html](examples/visual-brief-demo.html) · screenshot frames + scope beat in action: [examples/visual-brief-screenshots-demo.html](examples/visual-brief-screenshots-demo.html)
 
 
 ## Layout
