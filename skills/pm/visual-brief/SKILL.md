@@ -17,7 +17,7 @@ Dense reference docs fail at human communication. This skill produces a **story-
 
 2. **Find the aha.** The single moment that makes a reader *feel* the problem. Best shape: real numbers with a contrast flip (good case → bad case), a before/after, or a "this is what users actually see". Never lead with architecture.
 
-3. **Mine real data.** Pull numbers, names, statuses from the actual source (repo, ticket, spec). Verify arithmetic. **Never invent demo numbers** — fabricated data destroys trust in a handoff artifact.
+3. **Mine real data.** Pull numbers, names, statuses from the actual source (repo, ticket, spec). Verify arithmetic. **Never invent demo numbers** — fabricated data destroys trust in a handoff artifact. If the work is UI-facing, also collect design screenshots: check the repo/ticket for mockups, ask the user for Figma exports or image paths. A real screenshot beats any diagram for "what devs are building toward" — but **never mock up a fake one** (same rule as numbers).
 
 4. **Pick beats.** ≤6 sections, each = one idea, each mapped to one visual idiom from [references/idioms.md](references/idioms.md):
 
@@ -32,6 +32,9 @@ Dense reference docs fail at human communication. This skill produces a **story-
    | scope, risks | boundary panels |
    | alternatives, variants | tabs |
    | optional detail | toggle/disclosure |
+   | real UI, design mocks | screenshot frame |
+
+   **Dev-spec briefs must include a scope beat**: paired in-scope ✓ / out-of-scope ✕ panels plus open questions (idiom 7). The boundary line is what review discussion targets — a spec without explicit out-of-scope invites scope creep debates in the comments instead.
 
 5. **Build.** Start from [assets/skeleton.html](assets/skeleton.html) — locked design system (warm paper, orange accent, serif display + system sans body + mono labels). **Thai-content exception:** system serif has weak Thai glyph coverage cross-platform — for Thai-language briefs, add Google Fonts `IBM Plex Sans Thai` (body) + `Mitr` (display) and point `--sans`/`--display` at them; accept the one external dep. Story sections first, then dark divider ("End of story — technical detail below"), then appendix. Content in English unless user specifies otherwise. Tabs/toggles allowed (vanilla JS in skeleton); page must still read sensibly if JS is stripped.
 
@@ -54,6 +57,7 @@ Dense reference docs fail at human communication. This skill produces a **story-
 - **Invented numbers** — always mine and verify from source.
 - **Mono-font body text** — mono is for labels/code/data only.
 - **More than ~6 beats** — past that it's a wiki page, not a brief.
+- **Raw multi-MB screenshots** — compress to ≤300 KB each before base64-embedding (commands in idioms.md §11) or the single-file brief stops being shippable.
 
 ## File map
 

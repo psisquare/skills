@@ -118,14 +118,24 @@ Red left-border carries the "warning" semantics. Keep each card to one rule, ≤
 
 ## 7. Boundary panels — scope, risks, gates
 
-**Use for:** out-of-scope lists, open risks, launch gates. Marker is set per-panel via class: `.panel` (✕ default), `.panel.risk` (⚠), `.panel.gate` (□).
+**Use for:** scope boundaries, open risks, launch gates. Marker is set per-panel via class: `.panel.in` (✓), `.panel` (✕ default), `.panel.risk` (⚠), `.panel.gate` (□).
+
+**Dev-spec scope beat** — pair in-scope ✓ against out-of-scope ✕ side by side; the boundary line is what reviewers need to debate. Every out-of-scope item gets a one-word reason in parens (why cut: backend, later phase, other team).
 
 ```html
 <div class="cols">
+  <div class="panel in"><h4>In scope (v1)</h4><ul>
+    <li>Manual price entry + fee calculation</li>
+    <li>Category picker with search</li></ul></div>
   <div class="panel"><h4>Out of scope (v1)</h4><ul>
-    <li>Link-paste autofetch (needs scraper backend)</li></ul></div>
+    <li>Link-paste autofetch (needs scraper backend)</li>
+    <li>Historical price tracking (phase 2)</li></ul></div>
+</div>
+<div class="cols">
   <div class="panel risk"><h4>Open risks</h4><ul>
     <li><b>Accuracy is reputation</b> — one wrong cross-check = public backlash</li></ul></div>
+  <div class="panel gate"><h4>Open questions</h4><ul>
+    <li>Who owns rate-table updates after launch?</li></ul></div>
 </div>
 ```
 
@@ -173,6 +183,42 @@ For high-stakes gates in the story half, use full-width `.gate` cards instead (a
   <div class="num"><div class="v">3.21% + $0.03</div><div class="l">payment fee per order</div></div>
 </div>
 ```
+
+---
+
+## 11. Screenshot frame — real UI, design mocks
+
+**Use for:** showing devs the actual UI they're building toward — Figma exports, design mocks, current-state screenshots for redesigns. A real picture beats any diagram when the work is visual. Browser-chrome bar signals "this is a screen"; caption states what to notice, not what's visible.
+
+```html
+<figure class="shot">
+  <div class="shot-bar"><i></i><i></i><i></i><span>checkout — step 2 of 3</span></div>
+  <img src="data:image/png;base64,..." alt="Checkout payment step with fee breakdown panel" width="1200" height="800">
+  <figcaption>Fee breakdown expands inline — no modal. This is the main change from current prod.</figcaption>
+</figure>
+
+<!-- before/after or design-vs-prod: pair two shots -->
+<div class="shot-grid">
+  <figure class="shot"><div class="shot-bar"><i></i><i></i><i></i><span>current prod</span></div>
+    <img src="data:image/png;base64,..." alt="..."></figure>
+  <figure class="shot"><div class="shot-bar"><i></i><i></i><i></i><span>target design</span></div>
+    <img src="data:image/png;base64,..." alt="..."></figure>
+</div>
+```
+
+**Embed rules — keep the brief self-contained:**
+
+- Inline as base64 data URI; never link external image URLs (Figma links rot, files move).
+- Compress before embedding — target ≤300 KB per image, ≤1 MB total page:
+  ```bash
+  sips -Z 1200 shot.png --out shot-small.png            # macOS resize
+  magick shot.png -resize 1200x -quality 80 shot.jpg     # ImageMagick; photos → jpg
+  base64 -i shot-small.png | wc -c                       # check payload size
+  ```
+- Set `width`/`height` attributes from the actual image to avoid layout shift.
+- JPEG for photographic content; PNG only for crisp UI with text.
+- **Never mock up a fake screenshot** — same rule as invented numbers. No design available → say so and use contrast cards or a timeline instead.
+- Max 2–3 shots in the story half; more belong in appendix or paired inside tabs (idiom 8) for per-platform variants.
 
 ---
 

@@ -116,6 +116,7 @@
   .panel li { padding: 5px 0; border-bottom: 1px dashed var(--line); font-size: 13px; display: flex; gap: 8px; }
   .panel li:last-child { border-bottom: 0; }
   .panel li::before { content: "✕"; color: var(--subtle); font-weight: 700; flex: 0 0 auto; }
+  .panel.in li::before { content: "✓"; color: var(--accent); }
   .panel.risk li::before { content: "⚠"; color: var(--amber); }
   .panel.gate li::before { content: "□"; color: var(--accent); }
   .left-list { margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
@@ -144,6 +145,15 @@
   .num .v { font-family: var(--mono); font-weight: 600; font-size: 22px; }
   .num .l { font-size: 12px; color: var(--muted); margin-top: 3px; }
 
+  /* ===== idiom 11: screenshot frame ===== */
+  .shot { background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin: 0; }
+  .shot-bar { display: flex; align-items: center; gap: 6px; padding: 8px 12px; border-bottom: 1px solid var(--line); }
+  .shot-bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+  .shot-bar span { font-family: var(--mono); font-size: 10.5px; color: var(--subtle); margin-left: 6px; }
+  .shot img { display: block; width: 100%; height: auto; }
+  .shot figcaption { padding: 10px 14px; font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--line); }
+  .shot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; }
+
   /* ===== other / appendix ===== */
   .reasons { display: flex; flex-direction: column; gap: 12px; margin-top: 26px; }
   .reason { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; display: flex; gap: 16px; align-items: flex-start; }
@@ -163,7 +173,7 @@
     section { padding: 52px 0; }
     .hero { padding: 60px 0 52px; }
     .wf-row { grid-template-columns: 104px 1fr 76px; gap: 10px; }
-    .rules, .cols { grid-template-columns: 1fr; }
+    .rules, .cols, .shot-grid { grid-template-columns: 1fr; }
     .nums { grid-template-columns: 1fr 1fr; }
     .slice { grid-template-columns: 26px 1fr; }
     .slice .chip { grid-column: 2; justify-self: start; }

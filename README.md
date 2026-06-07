@@ -20,7 +20,7 @@ Product/PM workflow skills.
 
 Turn any implementation concept (PRD, plan, architecture, postmortem) into a **story-scroll HTML one-pager** humans actually understand — hero "aha" moment first, plain-language beats, technical appendix below the fold. Single self-contained `.html` file, zero external deps, opens in any browser.
 
-Core principle: **distillation is the work; HTML is the easy part.** The skill encodes a workflow (audience → aha → mine real data → ≤6 beats → render-verify) plus a library of 10 visual idioms (waterfall bars, contrast cards, timelines, funnels, tabs…) and the anti-patterns that make dense handoff docs fail.
+Core principle: **distillation is the work; HTML is the easy part.** The skill encodes a workflow (audience → aha → mine real data → ≤6 beats → render-verify) plus a library of 11 visual idioms (waterfall bars, contrast cards, timelines, funnels, tabs, screenshot frames…) and the anti-patterns that make dense handoff docs fail.
 
 See it applied to itself: [examples/visual-brief-demo.html](examples/visual-brief-demo.html)
 
