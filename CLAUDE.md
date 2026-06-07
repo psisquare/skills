@@ -17,7 +17,10 @@ skills/<bucket>/<name>/SKILL.md      # skill definition (frontmatter: name, desc
 skills/<bucket>/<name>/references/   # optional deep-dive docs the skill links to
 skills/<bucket>/<name>/assets/       # optional templates/files the skill uses
 examples/                            # sample outputs, referenced from README — not installed
+drafts/                              # WIP skills, gitignored — never published, no README entry
 ```
+
+Develop new skills in `drafts/<name>/`, test by symlinking into `~/.claude/skills/`, then `mv` into `skills/<bucket>/` when ready to publish.
 
 New skill goes into an existing bucket if one fits; otherwise add a new bucket folder and list it both here and in the README's Layout section.
 
