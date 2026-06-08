@@ -5,7 +5,7 @@ description: Break a plan, spec, or PRD into independently-grabbable tickets on 
 
 # To Tickets
 
-> Adapted from [`mattpocock/skills` → `to-issues`](https://github.com/mattpocock/skills/blob/main/skills/engineering/to-issues/SKILL.md), MIT © 2026 Matt Pocock. Adds: open-technical-question gating, MVP/phase proposal, and PM-chosen granularity.
+> Adapted from `mattpocock/skills` → `to-issues` (MIT) — see [LICENSE](LICENSE).
 
 Break a plan into independently-grabbable issues using vertical slices (tracer bullets). Built to consume a functional spec (e.g. `<feature>.functional.md` from grill-pm) or any plan/PRD already in context.
 
