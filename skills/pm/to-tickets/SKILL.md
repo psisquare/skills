@@ -1,6 +1,6 @@
 ---
 name: to-tickets
-description: Break a plan, spec, or PRD into independently-grabbable tickets on the project issue tracker using tracer-bullet vertical slices. Carries any open technical questions into the tickets as explicit "discuss with dev" items (and gates those tickets), proposes an MVP slice when the breakdown is large so the PM can prioritise what ships first, and lets the PM choose how coarse or fine the tickets should be. Use when a user wants to convert a plan or a functional spec (e.g. from grill-pm) into implementation tickets.
+description: Break a plan, spec, or PRD into independently-grabbable tickets on the project issue tracker using tracer-bullet vertical slices. Groups the slices under a parent overview issue (the tracker's native parent primitive) holding the summary, scope, spec link, and open-question roll-up — so the whole feature and its breakdown stay in one place. Carries any open technical questions into the tickets as explicit "discuss with dev" items (and gates those tickets), proposes an MVP slice when the breakdown is large so the PM can prioritise what ships first, and lets the PM choose how coarse or fine the tickets should be. Use when a user wants to convert a plan or a functional spec (e.g. from grill-pm) into implementation tickets.
 ---
 
 # To Tickets
@@ -80,14 +80,40 @@ Ask:
 
 Iterate until the user approves.
 
-### 7. Publish the issues to the issue tracker
+### 7. Create the parent overview issue
 
-For each approved slice, publish a new issue using the template below, in dependency order (blockers and the `[Discuss]` ticket first, so you can reference real identifiers). Apply the ready-for-agent triage label **only** to AFK slices with **no** open questions; withhold it from HITL/open-question slices.
+If the breakdown has **2+ slices**, create a parent overview issue **first**, so each slice can be linked to it as you publish. Use the tracker's **native grouping primitive** — Jira Epic, GitHub tracking issue, Linear parent/project, etc. — do not assume a specific tracker or hard-code "Epic".
+
+The overview holds only what the tracker won't auto-generate. The breakdown itself is the **native parent→child links** you set in step 8 — do **not** hand-maintain a list of child tickets here (it duplicates the tracker's own view and goes stale). Only if the tracker cannot surface children under a parent should you list the slices here as a fallback.
+
+<overview-template>
+## Summary
+
+The problem and the solution, in brief — from the functional spec.
+
+## Scope / Out of scope
+
+From the functional spec.
+
+## Functional spec
+
+A link to `<feature>.functional.md` (the full functional context — do not duplicate it here).
+
+## Open technical questions
+
+Roll-up: link the `[Discuss]` ticket (if any) and note which slices are gated — HITL and not ready-for-agent until their questions are resolved with dev.
+</overview-template>
+
+Single-slice feature: skip the overview; the one slice links the functional spec directly.
+
+### 8. Publish the slices to the issue tracker
+
+For each approved slice, publish a new issue using the template below, in dependency order (the `[Discuss]` ticket and any blockers first, so you can reference real identifiers). **Link every slice to the parent overview issue** via the tracker's parent mechanism. Apply the ready-for-agent triage label **only** to AFK slices with **no** open questions; withhold it from HITL/open-question slices.
 
 <issue-template>
 ## Parent
 
-A reference to the parent issue/epic (if the source was an existing issue, otherwise omit).
+A reference to the parent overview issue created in step 7 (or an existing parent, if the source was one). Omit only for a single-slice feature.
 
 ## Phase
 
@@ -119,4 +145,4 @@ Or "None — can start immediately" if no blockers.
 
 </issue-template>
 
-Do NOT close or modify any parent issue.
+Do NOT close or modify a **pre-existing** parent issue the source referenced. (The overview issue you created in step 7 is yours to populate and link.)

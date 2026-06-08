@@ -34,7 +34,7 @@ Take a feature from fuzzy idea to buildable, prioritised, human-readable handoff
 | Stage | Skill | Turns… | …into |
 |---|---|---|---|
 | 1 | **grill-pm** | a fuzzy feature idea | a settled functional spec + parked dev questions |
-| 2 | **to-tickets** | that spec | prioritised, gated vertical-slice tickets |
+| 2 | **to-tickets** | that spec | a parent overview + prioritised, gated vertical-slice tickets |
 | 3 | **visual-brief** | a plan / spec / ticket | a story-scroll HTML page humans actually read |
 
 #### 1. [grill-pm](skills/pm/grill-pm/SKILL.md) — decide *what* to build
@@ -45,7 +45,7 @@ Interviews you about a feature's **functional decisions only** (behavior, busine
 
 #### 2. [to-tickets](skills/pm/to-tickets/SKILL.md) — slice it into buildable work
 
-Breaks a plan or functional spec (e.g. from grill-pm) into independently-grabbable **tracer-bullet vertical slices** on your issue tracker. Carries any **open technical questions into the tickets** as explicit "discuss with dev" items — gating those slices to HITL and withholding the ready-for-agent label so no one starts them unresolved. Proposes an **MVP slice** for large breakdowns, and lets you **choose granularity** (coarse / standard / fine).
+Breaks a plan or functional spec (e.g. from grill-pm) into independently-grabbable **tracer-bullet vertical slices** on your issue tracker, grouped under a **parent overview issue** (the tracker's own Epic / tracking-issue / parent primitive) that holds the summary, scope, spec link, and open-question roll-up — so the whole feature and its breakdown live in one place. Carries any **open technical questions into the tickets** as explicit "discuss with dev" items — gating those slices to HITL and withholding the ready-for-agent label so no one starts them unresolved. Proposes an **MVP slice** for large breakdowns, and lets you **choose granularity** (coarse / standard / fine).
 
 **Core principle:** no decision and no open question leaves the room as prose. Resolved decisions become acceptance criteria; open questions become gated tickets; a big plan becomes MVP-first phasing — buildable *and* shippable in the right order.
 
