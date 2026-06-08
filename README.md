@@ -38,6 +38,16 @@ PM-stage grilling — interview the user about a feature's **functional decision
 
 Core principle: **separate the functional pass from the technical pass.** The PM settles *what* the system should do and hands the dev a clean spec plus a bounded list of *how* questions to resolve — killing mid-sprint "wait, what about X?" churn. Output is a `<feature>.functional.md` artifact, deliberately agnostic about whatever PRD/issue tooling consumes it next.
 
+Adapted from [`mattpocock/skills` → `grill-me`](https://github.com/mattpocock/skills) (MIT) — see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+#### [to-tickets](skills/pm/to-tickets/SKILL.md)
+
+Break a plan or functional spec (e.g. from grill-pm) into independently-grabbable **tracer-bullet vertical slices** on the issue tracker. Carries any **open technical questions into the tickets** as explicit "discuss with dev" items — forcing those slices to HITL and withholding the ready-for-agent label so a dev can't start one without resolving them. Proposes an **MVP slice** when the breakdown is large so the PM prioritises what ships first, and lets the PM **choose ticket granularity** (coarse / standard / fine).
+
+Core principle: **no decision and no open question leaves the room as prose.** Resolved decisions become acceptance criteria; open questions become gated tickets; a big plan becomes a prioritised MVP-first phasing — so the breakdown is both buildable and shippable in the right order.
+
+Adapted from [`mattpocock/skills` → `to-issues`](https://github.com/mattpocock/skills) (MIT) — see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
 
 ## Layout
 
