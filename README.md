@@ -32,6 +32,12 @@ Core principle: **distillation is the work; HTML is the easy part.** The skill e
 
 See it applied to itself: [examples/visual-brief-demo.html](examples/visual-brief-demo.html) · screenshot frames + scope beat in action: [examples/visual-brief-screenshots-demo.html](examples/visual-brief-screenshots-demo.html)
 
+#### [grill-pm](skills/pm/grill-pm/SKILL.md)
+
+PM-stage grilling — interview the user about a feature's **functional decisions only** (behavior, business rules, edge cases, states, acceptance criteria), one question at a time. Every technical/implementation question is **parked to a Dev Open Questions list**, never resolved. Reads the local codebase (if present) to ground questions in real behavior, and maintains a shared `CONTEXT.md` glossary so later features inherit this one's term precision.
+
+Core principle: **separate the functional pass from the technical pass.** The PM settles *what* the system should do and hands the dev a clean spec plus a bounded list of *how* questions to resolve — killing mid-sprint "wait, what about X?" churn. Output is a `<feature>.functional.md` artifact, deliberately agnostic about whatever PRD/issue tooling consumes it next.
+
 
 ## Layout
 
