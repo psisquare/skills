@@ -7,7 +7,9 @@ description: Break a plan, spec, or PRD into independently-grabbable tickets on 
 
 Break a plan into independently-grabbable issues using vertical slices (tracer bullets). Built to consume a functional spec (e.g. `<feature>.functional.md` from grill-pm) or any plan/PRD already in context.
 
-The issue tracker and triage label vocabulary should have been provided to you — run `/setup-matt-pocock-skills` if not.
+## Issue tracker
+
+Publishes to your project's issue tracker — no up-front setup needed. If you don't already know which tracker this project uses, ask the user once (GitHub Issues / Linear / Jira / …) and how to reach it (MCP tool, `gh` CLI, etc.), then remember it in your memory for this project so later runs don't re-ask.
 
 ## Process
 
@@ -45,7 +47,7 @@ Slices are **HITL** or **AFK**. HITL needs human interaction (an architectural d
 
 Every Dev Open Question from the source must end up visible and actionable in the tracker — never silently dropped:
 
-- **Slice-specific question** → list it in that slice's `Open technical questions` section. **Force the slice to HITL** and **withhold the ready-for-agent label** — a slice with an unresolved question is not agent-ready.
+- **Slice-specific question** → list it in that slice's `Open technical questions` section. **Force the slice to HITL** — a slice with an unresolved question cannot be started until it is resolved with dev.
 - **Cross-cutting question** (not tied to one slice) → collect all such into a single discussion ticket: `[Discuss] Open technical questions — <feature>`. Link every slice it affects as **blocked by** this ticket.
 
 The goal: a dev cannot pick up a slice without first seeing — and discussing — the open questions that bound it.
@@ -101,14 +103,14 @@ A link to `<feature>.functional.md` (the full functional context — do not dupl
 
 ## Open technical questions
 
-Roll-up: link the `[Discuss]` ticket (if any) and note which slices are gated — HITL and not ready-for-agent until their questions are resolved with dev.
+Roll-up: link the `[Discuss]` ticket (if any) and note which slices are gated — HITL until their questions are resolved with dev.
 </overview-template>
 
 Single-slice feature: skip the overview; the one slice links the functional spec directly.
 
 ### 8. Publish the slices to the issue tracker
 
-For each approved slice, publish a new issue using the template below, in dependency order (the `[Discuss]` ticket and any blockers first, so you can reference real identifiers). **Link every slice to the parent overview issue** via the tracker's parent mechanism. Apply the ready-for-agent triage label **only** to AFK slices with **no** open questions; withhold it from HITL/open-question slices.
+For each approved slice, publish a new issue using the template below, in dependency order (the `[Discuss]` ticket and any blockers first, so you can reference real identifiers). **Link every slice to the parent overview issue** via the tracker's parent mechanism.
 
 <issue-template>
 ## Parent
@@ -132,7 +134,7 @@ Avoid specific file paths or code snippets — they go stale fast. Exception: a 
 
 ## Open technical questions
 
-Questions to resolve **with dev before building** (omit this section if none). While any remain open, this slice is HITL and not ready-for-agent.
+Questions to resolve **with dev before building** (omit this section if none). While any remain open, this slice is HITL.
 
 - [ ] Question 1 — and the functional constraint that bounds it
 - [ ] Question 2
