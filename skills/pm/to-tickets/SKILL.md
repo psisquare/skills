@@ -52,6 +52,8 @@ Every Dev Open Question from the source must end up visible and actionable in th
 
 The goal: a dev cannot pick up a slice without first seeing — and discussing — the open questions that bound it.
 
+**Make every reference self-contained.** The functional spec may number its decisions (D1, D2, …) for its own bookkeeping — **never carry a bare ID like `D7` into a ticket.** A reader on the tracker doesn't have the spec open; `(bounds D7)` is noise to them. Replace each ID with the decision's gist in plain words: `(bounds the commission base — list / after-discount / buyer-paid)`. Same for blockers and acceptance criteria.
+
 ### 5. Propose an MVP slice when the breakdown is large
 
 If the breakdown is large (rule of thumb: more than ~6 slices, or the PM flags it as big), don't just hand over everything flat. Propose a **phased cut** so the PM can prioritise what ships first:
@@ -136,7 +138,7 @@ Avoid specific file paths or code snippets — they go stale fast. Exception: a 
 
 Questions to resolve **with dev before building** (omit this section if none). While any remain open, this slice is HITL.
 
-- [ ] Question 1 — and the functional constraint that bounds it
+- [ ] Question 1 — and the functional constraint that bounds it, named in plain words (no bare decision IDs)
 - [ ] Question 2
 
 ## Blocked by
