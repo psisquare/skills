@@ -5,8 +5,6 @@ description: Break a plan, spec, or PRD into independently-grabbable tickets on 
 
 # To Tickets
 
-> Adapted from `mattpocock/skills` → `to-issues` (MIT) — see [LICENSE](LICENSE).
-
 Break a plan into independently-grabbable issues using vertical slices (tracer bullets). Built to consume a functional spec (e.g. `<feature>.functional.md` from grill-pm) or any plan/PRD already in context.
 
 The issue tracker and triage label vocabulary should have been provided to you — run `/setup-matt-pocock-skills` if not.

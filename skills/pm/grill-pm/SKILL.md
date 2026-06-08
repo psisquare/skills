@@ -3,8 +3,6 @@ name: grill-pm
 description: PM-stage grilling — interview the user about a feature's FUNCTIONAL decisions only (behavior, business rules, edge cases, states, acceptance criteria), parking every technical/implementation question to a Dev Open Questions list instead of resolving it. Reads the local codebase if present to ground questions in real behavior, but never resolves technical questions itself. Use when a PM wants to clarify a feature before dev sees it, or mentions "grill-pm" / "functional grilling". Produces handoff artifacts (functional spec + Dev Open Questions + glossary) for whatever technical/dev pass comes next.
 ---
 
-> Adapted from `mattpocock/skills` → `grill-me` (MIT) — see [LICENSE](LICENSE).
-
 Interview me relentlessly about the **functional** design of this feature until we reach shared understanding. Walk each branch of the decision tree, resolving dependencies one-by-one. Ask one question at a time; give your recommended answer each time.
 
 ## Scope — functional only
