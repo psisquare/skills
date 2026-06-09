@@ -95,6 +95,12 @@ The overview holds only what the tracker won't auto-generate. The breakdown itse
 
 The problem and the solution, in brief — from the functional spec.
 
+## Design
+
+One placeholder for the creator to drop the key design / hero mock (delete if the feature has no visual surface):
+
+`📷 [[ screenshot: key design / hero mock of the feature — paste or delete ]]`
+
 ## Scope / Out of scope
 
 From the functional spec.
@@ -114,6 +120,8 @@ Single-slice feature: skip the overview; the one slice links the functional spec
 
 For each approved slice, publish a new issue using the template below, in dependency order (the `[Discuss]` ticket and any blockers first, so you can reference real identifiers). **Link every slice to the parent overview issue** via the tracker's parent mechanism.
 
+Recommend a screenshot placeholder only where a visual genuinely reduces ambiguity (see **What to build** below). The placeholder is for the human creator to fill — **never fabricate, generate, or embed an image yourself.**
+
 <issue-template>
 ## Parent
 
@@ -128,6 +136,16 @@ MVP / Phase 2+ (omit if no phased cut was made).
 A concise description of this vertical slice. Describe the end-to-end behaviour, not layer-by-layer implementation.
 
 Avoid specific file paths or code snippets — they go stale fast. Exception: a prototype snippet that encodes a decision more precisely than prose (state machine, reducer, schema, type shape) — inline the decision-rich parts and note it came from a prototype.
+
+**Screenshot (visual slices only).** If this slice has a visual surface (UI, layout, a flow clearer shown than told), add **one** placeholder for the creator to drop a real screenshot/mock:
+
+`📷 [[ screenshot: target UI for this slice — paste or delete ]]`
+
+If the slice **changes existing UI**, use a before/after pair instead:
+
+`📷 [[ screenshot: current ]]` · `📷 [[ screenshot: target ]]`
+
+Backend / data / infra-only slice → omit; no placeholder.
 
 ## Acceptance criteria
 
