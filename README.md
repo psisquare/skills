@@ -24,7 +24,7 @@ Pulls the latest version of every installed skill into place — no reinstall, n
 
 ### `pm/` — product-engineering workflow
 
-Take a feature from fuzzy idea to buildable, prioritised, human-readable handoff — without the mid-sprint "wait, what about X?" churn. Three skills that chain into one pipeline:
+Take a feature from fuzzy idea to buildable, prioritised, human-readable handoff — without the mid-sprint "wait, what about X?" churn. Three skills chain into one pipeline (a fourth, **presentation-brief**, is standalone):
 
 ```
   idea ──▶ grill-pm ──▶ to-tickets ──▶ visual-brief ──▶ build
@@ -56,6 +56,12 @@ Turns any implementation concept (PRD, plan, architecture, postmortem) into a **
 **Core principle:** distillation is the work; HTML is the easy part. A workflow (audience → aha → mine real data → ≤6 beats → render-verify) plus 11 visual idioms (waterfall bars, contrast cards, timelines, funnels, tabs, screenshot frames…) and the anti-patterns that make dense handoff docs fail.
 
 See it applied to itself: [examples/visual-brief-demo.html](examples/visual-brief-demo.html) · screenshot frames + scope beat in action: [examples/visual-brief-screenshots-demo.html](examples/visual-brief-screenshots-demo.html)
+
+#### 4. [presentation-brief](skills/pm/presentation-brief/SKILL.md) — brief a deck for an AI slide-builder
+
+Standalone (not a pipeline stage). Turns chat context, a URL (Confluence / Notion / NotebookLM / Drive), a file, or pasted text into a single structured **markdown brief** that another AI slide-builder (Claude design, Gamma, Beautiful.ai, Slidev…) generates the deck from — project context, time budget, audience-matched tone, visual direction, slide-by-slide structure (headline · body · visual · speaker note), hard constraints, and source material.
+
+**Core principle:** the brief is the artifact, not the slides. Separate *deciding the deck* from *rendering the deck* — settle audience, time budget, tone, and slide structure up front so the downstream tool has no room to invent filler, mistranslate domain terms, or blow the time budget.
 
 ## Layout
 
